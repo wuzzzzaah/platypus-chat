@@ -2,7 +2,8 @@
 var express = require("express")
   , app = express()
   , http = require("http").createServer(app)
-  , _ = require("underscore");
+  , _ = require("underscore")
+  , io = require("socket.io").listen(http);
 
 app.set("ipaddress", "127.0.0.1");
 
