@@ -7,8 +7,15 @@ app.set("ipaddress", "127.0.0.1");
 
 app.set("port", 8080);
 
+app.set("views",__dirname + "/views");
+
+app.set("view engine", "jade");
+
+app.use(express.static("public",__dirname + "/public"));
+
 app.get("/", function(request, response) {
-  response.send("Server is online");
+
+  response.render("index");
 
 });
 
