@@ -1,8 +1,18 @@
 {
+  "name": "platypus-chat",
+  "version": "0.0.0",
+  "author": "Omar Shariff Delmo <omar@loudpandagames.com>",
+  "description": "a simple chat application",
+  
   "dependencies": {
     "express":"*",
     "jade": "*",
     "socket.io": "*",
     "underscore": "*"
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:wuzzzzaah/platypus-chat.git"
   }
 }
