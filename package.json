@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "express":"*",
+    "jade": "*",
+    "socket.io": "*",
+    "underscore": "*"
+  }
+}
