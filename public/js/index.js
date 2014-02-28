@@ -6,6 +6,14 @@ function init() {
 
   var sessionId = '';
 
+  function updateParticipants(participants) {
+    $('#participants').html('');
+    for (var i = 0; i < participants.length; i++) {
+      $('#participants').append('<span id="' + participants[i].id + '">' +
+        participants[i].name + ' ' + (participants[i].id === sessionId ? '(You)' : '') + '<br /></span>');
+    }
+  }
+
   socket.on('connect', function () {
     sessionId = socket.socket.sessionid;
     console.log('Connected ' + sessionId);
