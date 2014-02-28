@@ -12,6 +12,10 @@ function init() {
     socket.emit('newUser', {id: sessionId, name: $('#name').val()});    
   });
 
+  socket.on('newConnection', function (data) {    
+    updateParticipants(data.participants);
+  });
+
   socket.on('userDisconnected', function(data) {
     $('#' + data.id).remove();
   });
