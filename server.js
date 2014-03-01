@@ -3,7 +3,8 @@ var express = require("express")
   , app = express()
   , http = require("http").createServer(app)
   , _ = require("underscore")
-  , io = require("socket.io").listen(http);
+  , io = require("socket.io").listen(http)
+  , messages = require('./routes/messages');
 
 var participants = []
 
@@ -19,28 +20,19 @@ app.use(express.static("public",__dirname + "/public"));
 
 app.use(express.bodyParser());
 
+app.use(function(request, response, next){
+  request._ = _;
+  request.io = io;
+  next();
+});
+
 app.get("/", function(request, response) {
 
   response.render("index");
 
 });
 
-app.post("/message", function(request, response) {
-
-  var message = request.body.message;
-
-  if(_.isUndefined(message) || _.isEmpty(message.trim())) {
-    return response.json(400, {error: "Message is invalid"});
-  }
-
-  var name = request.body.name;
-
-  io.sockets.emit("incomingMessage", {message: message, name: name});
-
-
-  response.json(200, {message: "Message received"});
-
-});
+app.post("/message", messages.postMessage);
 
 io.on("connection", function(socket){
 
